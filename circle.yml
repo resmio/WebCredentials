@@ -1,0 +1,101 @@
+
+version: 2
+
+jobs:
+  build:
+    macos:
+      xcode: "10.2.0"
+    shell: /bin/bash --login -eo pipefail
+    environment:
+      LANG: en_US.UTF-8
+    steps:
+      ## Pre-start iOS Simulator
+      # The `|| true` is necessary because xcrun will complain about incorrect usage.
+      # It says that `-t <instruments-template-name>` should be provided. If we provided
+      # that, it would take longer, work less reliable and create a bunch of trace files
+      # that we'd have to remove again so the project folder is empty on checkout.
+      # If we don't pass `-t`, the Simulator starts anyway...
+      - run:
+          name: Pre-start iOS Simulator
+          command: xcrun instruments -w "iPad Air 2 (12.2)" || true
+      
+      ## Create output directories
+      - run:
+          name: Create output directories
+          command: |
+            mkdir "/Users/distiller/output"
+            mkdir "/Users/distiller/output/xcodebuild-logs"
+      
+      ## Install ruby (cache-wrapped)
+      - restore_cache:
+          keys:
+            - v1_ruby-2.6.3_{{ .Branch }}
+            - v1_ruby-2.6.3
+      - run:
+          name: Install ruby
+          command: |
+            RUBY_VERSION="2.6.3"
+            RUBY_NAME="ruby-${RUBY_VERSION}"
+            RUBY_DIRECTORY="/Users/distiller/.rubies/${RUBY_NAME}"
+            if [ ! -d "${RUBY_DIRECTORY}" ]; then 
+                ruby-install ruby ${RUBY_VERSION}
+            else
+                echo "${RUBY_NAME} is already installed"
+            fi
+      - save_cache:
+          key: v1_ruby-2.6.3_{{ .Branch }}
+          paths:
+            - /Users/distiller/.rubies/ruby-2.6.3
+
+      ## Checkout source
+      - checkout
+
+      ## Debugging printouts
+      - run: 
+          name: Printout ruby environment for debugging
+          command: |
+            which ruby
+            echo ${GEM_HOME}
+            gem list
+            bundle exec ruby -v
+            bundle env
+
+      ## Install bundle (cache-wrapped)
+      - restore_cache:
+          keys:
+            - v1_bundle-cache_{{ .Branch }}_{{ checksum "Gemfile.lock" }}
+            - v1_bundle-cache_{{ .Branch }}
+            - v1_bundle-cache
+      - run: bundle install
+      - save_cache:
+          key: v1_bundle-cache_{{ .Branch }}_{{ checksum "Gemfile.lock" }}
+          paths:
+            # This is basically GEM_HOME, hardcoded.
+            # It MUST be updated if the ruby version changes!
+            # Due to CircleCIs complete stupidity, there doesn't seem to be any
+            # decent way of setting the path by, say, using $GEM_HOME, for example,
+            # because these morons still haven't made it possible to interpolate
+            # env vars throughout the config file. They even RECOMMEND hardcoding here:
+            # https://discuss.circleci.com/t/can-i-use-variables-in-cache-paths/11393/3
+            - /Users/distiller/.gem/ruby/2.6.3
+
+      ## Install pods (cache-wrapped)
+      - restore_cache:
+          keys:
+            - v1_pod-cache_{{ .Branch }}_{{ checksum "Podfile.lock" }}
+            - v1_pod-cache_{{ .Branch }}
+            - v1_pod-cache
+      - run: bundle exec pod install
+      - save_cache:
+          key: v1_pod-cache_{{ .Branch }}_{{ checksum "Podfile.lock" }}
+          paths:
+            - ./Pods
+
+      ## Run tests
+      - run:
+          name: Run tests
+          command: xcodebuild -workspace WebCredentials.xcworkspace -scheme "WebCredentials" -destination 'platform=iOS Simulator,name=iPad Air 2,OS=12.2' clean build test | tee "/Users/distiller/output/xcodebuild-logs/xcodebuild-verbose.log" | xcpretty | tee "/Users/distiller/output/xcodebuild-logs/xcodebuild-xcpretty.log"
+      
+      ## Store artifacts
+      - store_artifacts:
+          path: "/Users/distiller/output"

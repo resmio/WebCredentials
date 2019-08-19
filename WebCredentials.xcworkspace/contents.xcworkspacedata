@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:circle.yml">
+   </FileRef>
+   <FileRef
+      location = "group:LICENSE">
+   </FileRef>
+   <FileRef
+      location = "group:WebCredentials.podspec">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "xcode-project-setup">
+      <FileRef
+         location = "group:Gemfile">
+      </FileRef>
+      <FileRef
+         location = "group:run_synx_and_xUnique">
+      </FileRef>
+      <FileRef
+         location = "group:setup">
+      </FileRef>
+      <Group
+         location = "container:"
+         name = "scripts">
+         <FileRef
+            location = "group:scripts/post-merge">
+         </FileRef>
+         <FileRef
+            location = "group:scripts/pre-push">
+         </FileRef>
+         <FileRef
+            location = "group:scripts/run_synx">
+         </FileRef>
+         <FileRef
+            location = "group:scripts/run_xUnique">
+         </FileRef>
+         <FileRef
+            location = "group:scripts/xUnique.py">
+         </FileRef>
+      </Group>
+   </Group>
+   <FileRef
+      location = "group:WebCredentials.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>
