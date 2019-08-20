@@ -7,34 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D71EEBB4BB72FAEDBBD861405659EF0 /* Pods_WebCredentialsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C51182E101E8937BA68312F131D797E3 /* Pods_WebCredentialsTests.framework */; };
-		3E4787A1E3501880D67ACF8EE6760747 /* WebCredentials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D94F00BAA6BA48AAD00E8A2538864DB /* WebCredentials.framework */; };
 		80FB2874BFC1F491EEA7A5DB969C155E /* Pods_WebCredentials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D3A1CA314F8C5ABCB9812E6D128859 /* Pods_WebCredentials.framework */; };
 		C5A1CBC32E003BC93A69233E0A864C6D /* WebCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F4AE78D689D81D0581FAAEF026F04D8 /* WebCredentials.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F105E4F05AF1F11587CD3CA42B5CA004 /* WebCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042CC63FBE1A48EDD01FB5FB0AE06FC1 /* WebCredentials.swift */; };
-		F4089EF9AA681FCFE66DEEDBB8964C35 /* WebCredentialsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACCFF405A6A398C442D87C8672BC50B /* WebCredentialsTests.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		81D21B02F0DCD7582D93E20C8E962D4D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8E84F3AA4773B700E14D6BF162E27657 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8E0F76FE6AAF788F9250E09A62D1EDDF;
-			remoteInfo = WebCredentials;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		042CC63FBE1A48EDD01FB5FB0AE06FC1 /* WebCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCredentials.swift; sourceTree = "<group>"; };
 		144A967677200472879EC8D412B5FF8F /* Pods-WebCredentials.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebCredentials.release.xcconfig"; path = "Target Support Files/Pods-WebCredentials/Pods-WebCredentials.release.xcconfig"; sourceTree = "<group>"; };
 		6F4AE78D689D81D0581FAAEF026F04D8 /* WebCredentials.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebCredentials.h; sourceTree = "<group>"; };
 		7D94F00BAA6BA48AAD00E8A2538864DB /* WebCredentials.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WebCredentials.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E9C9BEFF9E9642304F280740D2A3178 /* WebCredentialsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebCredentialsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		808B1CE0DC646352BB9E5337EA26AFB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FA98C69A95C10C05C86B2DE9F27E015 /* Pods-WebCredentials.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebCredentials.debug.xcconfig"; path = "Target Support Files/Pods-WebCredentials/Pods-WebCredentials.debug.xcconfig"; sourceTree = "<group>"; };
 		A7D3A1CA314F8C5ABCB9812E6D128859 /* Pods_WebCredentials.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WebCredentials.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BACCFF405A6A398C442D87C8672BC50B /* WebCredentialsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCredentialsTests.swift; sourceTree = "<group>"; };
 		BCB0A50B37C29F3ECCB19EF4AA2791D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C51182E101E8937BA68312F131D797E3 /* Pods_WebCredentialsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WebCredentialsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E822C1952D223B1AA08F1EC6784200F1 /* Pods-WebCredentialsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebCredentialsTests.debug.xcconfig"; path = "Target Support Files/Pods-WebCredentialsTests/Pods-WebCredentialsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -50,15 +34,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D014AC22629E2B72149D761215AD3D12 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D71EEBB4BB72FAEDBBD861405659EF0 /* Pods_WebCredentialsTests.framework in Frameworks */,
-				3E4787A1E3501880D67ACF8EE6760747 /* WebCredentials.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -69,7 +44,6 @@
 				4D5DEE3AE911CBFF6F364FB37FCC6540 /* Pods */,
 				9DD919E7678E3162582D41A5C950CA99 /* Products */,
 				5AD0C833A8AB2802FFC0D54252A932D5 /* WebCredentials */,
-				9620FA2FEC10CED5E7CDD7C4A61B64B4 /* WebCredentialsTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,20 +68,10 @@
 			path = WebCredentials;
 			sourceTree = "<group>";
 		};
-		9620FA2FEC10CED5E7CDD7C4A61B64B4 /* WebCredentialsTests */ = {
-			isa = PBXGroup;
-			children = (
-				808B1CE0DC646352BB9E5337EA26AFB4 /* Info.plist */,
-				BACCFF405A6A398C442D87C8672BC50B /* WebCredentialsTests.swift */,
-			);
-			path = WebCredentialsTests;
-			sourceTree = "<group>";
-		};
 		9DD919E7678E3162582D41A5C950CA99 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				7D94F00BAA6BA48AAD00E8A2538864DB /* WebCredentials.framework */,
-				7E9C9BEFF9E9642304F280740D2A3178 /* WebCredentialsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,25 +99,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		65C382B15C9F65B9FE0A5D7823524A78 /* WebCredentialsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 938EEFDF343117904A0EE6337A859C41 /* Build configuration list for PBXNativeTarget "WebCredentialsTests" */;
-			buildPhases = (
-				5251F54F72C54449E1A5E491F7E93B24 /* [CP] Check Pods Manifest.lock */,
-				61B2C445F514F18C93E0A124E8F5F367 /* Sources */,
-				D014AC22629E2B72149D761215AD3D12 /* Frameworks */,
-				028DD29B7DDDA62DC8BD9BF06D7C1243 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				90DD3CF3665A25D2D2AF2718076816E1 /* PBXTargetDependency */,
-			);
-			name = WebCredentialsTests;
-			productName = WebCredentialsTests;
-			productReference = 7E9C9BEFF9E9642304F280740D2A3178 /* WebCredentialsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		8E0F76FE6AAF788F9250E09A62D1EDDF /* WebCredentials */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 412ED61B43760EB3B187FCFDF19EB544 /* Build configuration list for PBXNativeTarget "WebCredentials" */;
@@ -183,9 +128,6 @@
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Jan Nash (resmio)";
 				TargetAttributes = {
-					65C382B15C9F65B9FE0A5D7823524A78 = {
-						CreatedOnToolsVersion = 10.3;
-					};
 					8E0F76FE6AAF788F9250E09A62D1EDDF = {
 						CreatedOnToolsVersion = 10.3;
 						LastSwiftMigration = 1030;
@@ -205,19 +147,11 @@
 			projectRoot = "";
 			targets = (
 				8E0F76FE6AAF788F9250E09A62D1EDDF /* WebCredentials */,
-				65C382B15C9F65B9FE0A5D7823524A78 /* WebCredentialsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		028DD29B7DDDA62DC8BD9BF06D7C1243 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		49E86A62C9109B636020C8FED5C7577B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -228,28 +162,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5251F54F72C54449E1A5E491F7E93B24 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WebCredentialsTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		EFA7C16B99D37920FB19990C82157379 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -275,14 +187,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		61B2C445F514F18C93E0A124E8F5F367 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F4089EF9AA681FCFE66DEEDBB8964C35 /* WebCredentialsTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9D08DFEE98A0E4C834D9D1388B1F8FBC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -292,14 +196,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		90DD3CF3665A25D2D2AF2718076816E1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8E0F76FE6AAF788F9250E09A62D1EDDF /* WebCredentials */;
-			targetProxy = 81D21B02F0DCD7582D93E20C8E962D4D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		6157BCE729390AB0F0D4AF58AE7C2DDF /* Debug */ = {
@@ -368,25 +264,6 @@
 			};
 			name = Debug;
 		};
-		A9809D0F0B1FFDAB47E5640938C59B0C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E822C1952D223B1AA08F1EC6784200F1 /* Pods-WebCredentialsTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = WebCredentialsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.resmio.WebCredentialsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 		AA6B27CD0C813D71F1907EA23A6DD871 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -447,25 +324,6 @@
 			};
 			name = Release;
 		};
-		ABE00CCAD603A69FD36E5C178EA03804 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F50341EA1C3577E56B000FA5346DC56A /* Pods-WebCredentialsTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = WebCredentialsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.resmio.WebCredentialsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		B29A8CD77E41876550E767CAD5938333 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 144A967677200472879EC8D412B5FF8F /* Pods-WebCredentials.release.xcconfig */;
@@ -523,15 +381,6 @@
 			buildConfigurations = (
 				B55C757249B6DBCB2392707BCAABF13B /* Debug */,
 				B29A8CD77E41876550E767CAD5938333 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		938EEFDF343117904A0EE6337A859C41 /* Build configuration list for PBXNativeTarget "WebCredentialsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A9809D0F0B1FFDAB47E5640938C59B0C /* Debug */,
-				ABE00CCAD603A69FD36E5C178EA03804 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
