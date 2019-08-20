@@ -11,6 +11,7 @@
 		3E4787A1E3501880D67ACF8EE6760747 /* WebCredentials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D94F00BAA6BA48AAD00E8A2538864DB /* WebCredentials.framework */; };
 		80FB2874BFC1F491EEA7A5DB969C155E /* Pods_WebCredentials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D3A1CA314F8C5ABCB9812E6D128859 /* Pods_WebCredentials.framework */; };
 		C5A1CBC32E003BC93A69233E0A864C6D /* WebCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F4AE78D689D81D0581FAAEF026F04D8 /* WebCredentials.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F105E4F05AF1F11587CD3CA42B5CA004 /* WebCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042CC63FBE1A48EDD01FB5FB0AE06FC1 /* WebCredentials.swift */; };
 		F4089EF9AA681FCFE66DEEDBB8964C35 /* WebCredentialsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACCFF405A6A398C442D87C8672BC50B /* WebCredentialsTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		042CC63FBE1A48EDD01FB5FB0AE06FC1 /* WebCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCredentials.swift; sourceTree = "<group>"; };
 		144A967677200472879EC8D412B5FF8F /* Pods-WebCredentials.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebCredentials.release.xcconfig"; path = "Target Support Files/Pods-WebCredentials/Pods-WebCredentials.release.xcconfig"; sourceTree = "<group>"; };
 		6F4AE78D689D81D0581FAAEF026F04D8 /* WebCredentials.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebCredentials.h; sourceTree = "<group>"; };
 		7D94F00BAA6BA48AAD00E8A2538864DB /* WebCredentials.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WebCredentials.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +89,7 @@
 			children = (
 				BCB0A50B37C29F3ECCB19EF4AA2791D6 /* Info.plist */,
 				6F4AE78D689D81D0581FAAEF026F04D8 /* WebCredentials.h */,
+				042CC63FBE1A48EDD01FB5FB0AE06FC1 /* WebCredentials.swift */,
 			);
 			path = WebCredentials;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 					};
 					8E0F76FE6AAF788F9250E09A62D1EDDF = {
 						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1030;
 					};
 				};
 			};
@@ -283,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F105E4F05AF1F11587CD3CA42B5CA004 /* WebCredentials.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +372,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E822C1952D223B1AA08F1EC6784200F1 /* Pods-WebCredentialsTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = WebCredentialsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -445,6 +451,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F50341EA1C3577E56B000FA5346DC56A /* Pods-WebCredentialsTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = WebCredentialsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -463,6 +470,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 144A967677200472879EC8D412B5FF8F /* Pods-WebCredentials.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -486,6 +494,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9FA98C69A95C10C05C86B2DE9F27E015 /* Pods-WebCredentials.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -500,6 +509,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.resmio.WebCredentials;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
