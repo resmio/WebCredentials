@@ -13,7 +13,7 @@ import Security
 // MARK: Enum Declaration
 public enum WebCredentials {
     // Nested Types
-    public typealias Credential = (account: String, password: String)
+    public typealias Credential = (account: String, password: String, server: String, port: Int)
     
     public enum Result {
         case credential(Credential)
@@ -23,15 +23,15 @@ public enum WebCredentials {
     }
     
     // Credential CRUD
-    public static func request(fqdn: String?, completion: @escaping (Result) -> Void) {
+    public static func request(fqdn: String? = nil, account: String? = nil, completion: @escaping (Result) -> Void) {
         self._request(fqdn: fqdn, completion: completion)
     }
     
-    public static func save(credential: Credential, fqdn: String, completion: @escaping (Error?) -> Void) {
-        SecAddSharedWebCredential(fqdn as CFString, credential.account as CFString, credential.password as CFString?, completion)
+    public static func save(fqdn: String, credential: Credential, completion: @escaping (Error?) -> Void) {
+        SecAddSharedWebCredential(fqdn as CFString, credential.account as CFString, credential.password as CFString, completion)
     }
     
-    public static func delete(account: String, fqdn: String, completion: @escaping (Error?) -> Void) {
+    public static func delete(fqdn: String, account: String, completion: @escaping (Error?) -> Void) {
         SecAddSharedWebCredential(fqdn as CFString, account as CFString, nil, completion)
     }
     
@@ -66,20 +66,29 @@ private extension WebCredentials {
                 return
             }
             
-            let unsafeCredential = CFArrayGetValueAtIndex(credentials, 0)
-            let credentialDictionary = unsafeBitCast(unsafeCredential, to: CFDictionary.self)
+            let unsafeCredential: UnsafeRawPointer = CFArrayGetValueAtIndex(credentials, 0)
+            let credentialDictionary: CFDictionary = unsafeBitCast(unsafeCredential, to: CFDictionary.self)
             
             let account: String = self._getValue(for: kSecAttrAccount, from: credentialDictionary)
             let password: String = self._getValue(for: kSecSharedPassword, from: credentialDictionary)
+            let server: String = self._getValue(for: kSecAttrServer, from: credentialDictionary)
+            let port: Int = self._getValue(for: kSecAttrPort, from: credentialDictionary)
             
-            completion(.credential((account, password)))
+            completion(.credential((account, password, server, port)))
         }
     }
     
     // Helpers
     static func _getValue(for key: CFString, from credentialDict: CFDictionary) -> String {
-        let opaqueKey: UnsafeMutableRawPointer = Unmanaged.passUnretained(key).toOpaque()
-        let unsafeValue: UnsafeRawPointer = CFDictionaryGetValue(credentialDict, opaqueKey)
-        return unsafeBitCast(unsafeValue, to: CFString.self) as String
+        return unsafeBitCast(self._getUnsafeValue(for: key, from: credentialDict), to: CFString.self) as String
+    }
+    
+    static func _getValue(for key: CFString, from credentialDict: CFDictionary) -> Int {
+        let value: UnsafeRawPointer = self._getUnsafeValue(for: key, from: credentialDict)
+        return (unsafeBitCast(value, to: CFNumber.self) as NSNumber).intValue
+    }
+    
+    static func _getUnsafeValue(for key: CFString, from credentialDict: CFDictionary) -> UnsafeRawPointer {
+        return CFDictionaryGetValue(credentialDict, Unmanaged.passUnretained(key).toOpaque())
     }
 }
