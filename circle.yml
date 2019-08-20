@@ -96,10 +96,10 @@ jobs:
           paths:
             - ./Pods
 
-      ## Run tests
+      ## Build Framework
       - run:
-          name: Run tests
-          command: xcodebuild -workspace WebCredentials.xcworkspace -scheme "WebCredentials" -destination 'platform=iOS Simulator,name=iPad Air 2,OS=12.2' clean build test | tee "/Users/distiller/output/xcodebuild-logs/xcodebuild-verbose.log" | xcpretty | tee "/Users/distiller/output/xcodebuild-logs/xcodebuild-xcpretty.log"
+          name: Build Framework
+          command: xcodebuild -workspace WebCredentials.xcworkspace -scheme "WebCredentials" -destination 'platform=iOS Simulator,name=iPad Air 2,OS=12.2' clean build | tee "/Users/distiller/output/xcodebuild-logs/xcodebuild-verbose.log" | xcpretty | tee "/Users/distiller/output/xcodebuild-logs/xcodebuild-xcpretty.log"
       
       ## Store artifacts
       - store_artifacts:
