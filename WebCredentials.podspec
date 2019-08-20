@@ -1,10 +1,13 @@
 Pod::Spec.new do |s|
   s.name = "WebCredentials"
-  s.version = "0.0.1"
+  s.version = "1.0.0"
   s.summary = "A Swift 5 wrapper for Security.SecSharedWebCredentials"
   s.description = <<-DESC
                   This is a micro-framework which aims to make accessing the
                   Security.SecSharedWebCredentials API easy and convenient in Swift 5.
+                  Using this API isn't necessary anymore on iOS >= 11 but if you want
+                  to offer Safari AutoFill in your App to users running iOS < 11, you
+                  might find this useful.
                   DESC
   s.homepage = "https://github.com/resmio/WebCredentials"
   s.license = { 
