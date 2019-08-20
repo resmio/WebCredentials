@@ -72,7 +72,7 @@ private extension WebCredentials {
             let account: String = self._getValue(for: kSecAttrAccount, from: credentialDictionary)
             let password: String = self._getValue(for: kSecSharedPassword, from: credentialDictionary)
             let server: String = self._getValue(for: kSecAttrServer, from: credentialDictionary)
-            let port: Int = self._getValue(for: kSecAttrPort, from: credentialDictionary)
+            let port: Int = self._getPort(from: credentialDictionary)
             
             completion(.credential((account, password, server, port)))
         }
@@ -83,12 +83,15 @@ private extension WebCredentials {
         return unsafeBitCast(self._getUnsafeValue(for: key, from: credentialDict), to: CFString.self) as String
     }
     
-    static func _getValue(for key: CFString, from credentialDict: CFDictionary) -> Int {
-        let value: UnsafeRawPointer = self._getUnsafeValue(for: key, from: credentialDict)
+    static func _getPort(from credentialDict: CFDictionary) -> Int {
+        guard let value: UnsafeRawPointer = self._getUnsafeValue(for: kSecAttrPort, from: credentialDict) else {
+            // As documented here: https://developer.apple.com/documentation/security/1617896-secrequestsharedwebcredential
+            return 443
+        }
         return (unsafeBitCast(value, to: CFNumber.self) as NSNumber).intValue
     }
     
-    static func _getUnsafeValue(for key: CFString, from credentialDict: CFDictionary) -> UnsafeRawPointer {
+    static func _getUnsafeValue(for key: CFString, from credentialDict: CFDictionary) -> UnsafeRawPointer? {
         return CFDictionaryGetValue(credentialDict, Unmanaged.passUnretained(key).toOpaque())
     }
 }
