@@ -46,33 +46,26 @@ public enum WebCredentials {
 // MARK: Interface Implementations
 private extension WebCredentials {
     static func _request(fqdn: String?, completion: @escaping (Result) -> Void) {
-        SecRequestSharedWebCredential(fqdn as CFString?, nil) { webCredentials, requestError in
-            if let error: CFError = requestError {
+        SecRequestSharedWebCredential(fqdn as CFString?, nil) {
+            if let error: CFError = $1 {
                 let errorDomain: String = CFErrorGetDomain(error) as String
-                let errorCode: Int = CFErrorGetCode(requestError)
+                let errorCode: Int = CFErrorGetCode(error)
                 let noCredentialsFound: Bool = errorDomain == NSOSStatusErrorDomain && errorCode == Int(errSecItemNotFound)
-                
-                if noCredentialsFound {
-                    completion(.noCredentialsFound)
-                    return
-                }
-                
-                completion(.error(error))
+                completion(noCredentialsFound ? .noCredentialsFound : .error(error))
                 return
             }
             
-            guard let credentials = webCredentials, CFArrayGetCount(credentials) > 0 else {
+            guard let credentials = $0, CFArrayGetCount(credentials) > 0 else {
                 completion(.userCancelled)
                 return
             }
             
-            let unsafeCredential: UnsafeRawPointer = CFArrayGetValueAtIndex(credentials, 0)
-            let credentialDictionary: CFDictionary = unsafeBitCast(unsafeCredential, to: CFDictionary.self)
+            let credentialDict: CFDictionary = unsafeBitCast(CFArrayGetValueAtIndex(credentials, 0), to: CFDictionary.self)
             
-            let account: String = self._getValue(for: kSecAttrAccount, from: credentialDictionary)
-            let password: String = self._getValue(for: kSecSharedPassword, from: credentialDictionary)
-            let server: String = self._getValue(for: kSecAttrServer, from: credentialDictionary)
-            let port: Int = self._getPort(from: credentialDictionary)
+            let account: String = self._getValue(for: kSecAttrAccount, from: credentialDict)
+            let password: String = self._getValue(for: kSecSharedPassword, from: credentialDict)
+            let server: String = self._getValue(for: kSecAttrServer, from: credentialDict)
+            let port: Int = self._getPort(from: credentialDict)
             
             completion(.credential((account, password, server, port)))
         }
