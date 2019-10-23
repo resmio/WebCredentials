@@ -4,7 +4,7 @@ version: 2
 jobs:
   build:
     macos:
-      xcode: "10.2.0"
+      xcode: "11.1.0"
     shell: /bin/bash --login -eo pipefail
     environment:
       LANG: en_US.UTF-8
@@ -15,14 +15,9 @@ jobs:
           command: xcrun simctl list
 
       ## Pre-start iOS Simulator
-      # The `|| true` is necessary because xcrun will complain about incorrect usage.
-      # It says that `-t <instruments-template-name>` should be provided. If we provided
-      # that, it would take longer, work less reliable and create a bunch of trace files
-      # that we'd have to remove again so the project folder is empty on checkout.
-      # If we don't pass `-t`, the Simulator starts anyway...
       - run:
           name: Pre-start iOS Simulator
-          command: xcrun instruments -w "iPad Air 2 (12.2)" || true
+          command: xcrun simctl boot "iPad Air (3rd generation)"
       
       ## Create output directories
       - run:
@@ -99,7 +94,7 @@ jobs:
       ## Build Framework
       - run:
           name: Build Framework
-          command: xcodebuild -workspace WebCredentials.xcworkspace -scheme "WebCredentials" -destination 'platform=iOS Simulator,name=iPad Air 2,OS=12.2' clean build | tee "/Users/distiller/output/xcodebuild-logs/xcodebuild-verbose.log" | xcpretty | tee "/Users/distiller/output/xcodebuild-logs/xcodebuild-xcpretty.log"
+          command: xcodebuild -workspace WebCredentials.xcworkspace -scheme "WebCredentials" -destination 'platform=iOS Simulator,name=iPad Air (3rd generation),OS=13.1' clean build | tee "/Users/distiller/output/xcodebuild-logs/xcodebuild-verbose.log" | xcpretty | tee "/Users/distiller/output/xcodebuild-logs/xcodebuild-xcpretty.log"
       
       ## Store artifacts
       - store_artifacts:
