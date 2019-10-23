@@ -47,17 +47,21 @@ public enum WebCredentials {
 // MARK: Interface Implementations
 private extension WebCredentials {
     static func _request(fqdn: String?, completion: @escaping (Result) -> Void) {
+        let wrappedCompletion: (Result) -> Void = { result in
+            DispatchQueue.main.async { completion(result) }
+        }
+        
         SecRequestSharedWebCredential(fqdn as CFString?, nil) {
             if let error: CFError = $1 {
                 let errorDomain: String = CFErrorGetDomain(error) as String
                 let errorCode: Int = CFErrorGetCode(error)
                 let noCredentialsFound: Bool = errorDomain == NSOSStatusErrorDomain && errorCode == Int(errSecItemNotFound)
-                completion(noCredentialsFound ? .noCredentialsFound : .error(error))
+                wrappedCompletion(noCredentialsFound ? .noCredentialsFound : .error(error))
                 return
             }
             
             guard let credentials = $0, CFArrayGetCount(credentials) > 0 else {
-                completion(.userCancelled)
+                wrappedCompletion(.userCancelled)
                 return
             }
             
@@ -68,7 +72,7 @@ private extension WebCredentials {
             let server: String = self._getValue(for: kSecAttrServer, from: credentialDict)
             let port: Int = self._getPort(from: credentialDict)
             
-            completion(.credential((account, password, server, port)))
+            wrappedCompletion(.credential((account, password, server, port)))
         }
     }
     
