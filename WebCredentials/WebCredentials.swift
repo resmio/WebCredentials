@@ -6,6 +6,7 @@
 //  Copyright © 2019 Jan Nash (resmio). All rights reserved.
 //
 
+import Foundation
 import Security
 
 
