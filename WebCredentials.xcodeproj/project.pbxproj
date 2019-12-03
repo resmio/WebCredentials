@@ -20,9 +20,6 @@
 		9FA98C69A95C10C05C86B2DE9F27E015 /* Pods-WebCredentials.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebCredentials.debug.xcconfig"; path = "Target Support Files/Pods-WebCredentials/Pods-WebCredentials.debug.xcconfig"; sourceTree = "<group>"; };
 		A7D3A1CA314F8C5ABCB9812E6D128859 /* Pods_WebCredentials.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WebCredentials.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCB0A50B37C29F3ECCB19EF4AA2791D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C51182E101E8937BA68312F131D797E3 /* Pods_WebCredentialsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WebCredentialsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E822C1952D223B1AA08F1EC6784200F1 /* Pods-WebCredentialsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebCredentialsTests.debug.xcconfig"; path = "Target Support Files/Pods-WebCredentialsTests/Pods-WebCredentialsTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F50341EA1C3577E56B000FA5346DC56A /* Pods-WebCredentialsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebCredentialsTests.release.xcconfig"; path = "Target Support Files/Pods-WebCredentialsTests/Pods-WebCredentialsTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +49,6 @@
 			children = (
 				9FA98C69A95C10C05C86B2DE9F27E015 /* Pods-WebCredentials.debug.xcconfig */,
 				144A967677200472879EC8D412B5FF8F /* Pods-WebCredentials.release.xcconfig */,
-				E822C1952D223B1AA08F1EC6784200F1 /* Pods-WebCredentialsTests.debug.xcconfig */,
-				F50341EA1C3577E56B000FA5346DC56A /* Pods-WebCredentialsTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -80,7 +75,6 @@
 			isa = PBXGroup;
 			children = (
 				A7D3A1CA314F8C5ABCB9812E6D128859 /* Pods_WebCredentials.framework */,
-				C51182E101E8937BA68312F131D797E3 /* Pods_WebCredentialsTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
