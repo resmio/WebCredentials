@@ -4,7 +4,7 @@ version: 2
 jobs:
   build:
     macos:
-      xcode: "11.1.0"
+      xcode: "11.2.1"
     shell: /bin/bash --login -eo pipefail
     environment:
       LANG: en_US.UTF-8
@@ -94,7 +94,7 @@ jobs:
       ## Build Framework
       - run:
           name: Build Framework
-          command: xcodebuild -workspace WebCredentials.xcworkspace -scheme "WebCredentials" -destination 'platform=iOS Simulator,name=iPad Air (3rd generation),OS=13.1' clean build | tee "/Users/distiller/output/xcodebuild-logs/xcodebuild-verbose.log" | xcpretty | tee "/Users/distiller/output/xcodebuild-logs/xcodebuild-xcpretty.log"
+          command: xcodebuild -workspace WebCredentials.xcworkspace -scheme "WebCredentials" -destination 'platform=iOS Simulator,name=iPad Air (3rd generation),OS=latest' clean build | tee "/Users/distiller/output/xcodebuild-logs/xcodebuild-verbose.log" | xcpretty | tee "/Users/distiller/output/xcodebuild-logs/xcodebuild-xcpretty.log"
       
       ## Store artifacts
       - store_artifacts:
