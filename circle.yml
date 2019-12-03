@@ -29,12 +29,12 @@ jobs:
       ## Install ruby (cache-wrapped)
       - restore_cache:
           keys:
-            - v1_ruby-2.6.3_{{ .Branch }}
-            - v1_ruby-2.6.3
+            - v1_ruby-2.6.5_{{ .Branch }}
+            - v1_ruby-2.6.5
       - run:
           name: Install ruby
           command: |
-            RUBY_VERSION="2.6.3"
+            RUBY_VERSION="2.6.5"
             RUBY_NAME="ruby-${RUBY_VERSION}"
             RUBY_DIRECTORY="/Users/distiller/.rubies/${RUBY_NAME}"
             if [ ! -d "${RUBY_DIRECTORY}" ]; then 
@@ -43,9 +43,9 @@ jobs:
                 echo "${RUBY_NAME} is already installed"
             fi
       - save_cache:
-          key: v1_ruby-2.6.3_{{ .Branch }}
+          key: v1_ruby-2.6.5_{{ .Branch }}
           paths:
-            - /Users/distiller/.rubies/ruby-2.6.3
+            - /Users/distiller/.rubies/ruby-2.6.5
 
       ## Checkout source
       - checkout
@@ -77,7 +77,7 @@ jobs:
             # because these morons still haven't made it possible to interpolate
             # env vars throughout the config file. They even RECOMMEND hardcoding here:
             # https://discuss.circleci.com/t/can-i-use-variables-in-cache-paths/11393/3
-            - /Users/distiller/.gem/ruby/2.6.3
+            - /Users/distiller/.gem/ruby/2.6.5
 
       ## Install pods (cache-wrapped)
       - restore_cache:
