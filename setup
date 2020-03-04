@@ -4,7 +4,7 @@ __dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "${__dir}"
 
 
-RUBY_VERSION='2.6.5'
+RUBY_VERSION='2.7.0'
 COCOAPODS_VERSION='1.8.4'
 SYNX_VERSION='0.2.1'
 XCPRETTY_VERSION='0.3.0'
