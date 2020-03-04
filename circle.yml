@@ -29,12 +29,12 @@ jobs:
       ## Install ruby (cache-wrapped)
       - restore_cache:
           keys:
-            - v1_ruby-2.6.5_{{ .Branch }}
-            - v1_ruby-2.6.5
+            - v1_ruby-2.7.0_{{ .Branch }}
+            - v1_ruby-2.7.0
       - run:
           name: Install ruby
           command: |
-            RUBY_VERSION="2.6.5"
+            RUBY_VERSION="2.7.0"
             RUBY_NAME="ruby-${RUBY_VERSION}"
             RUBY_DIRECTORY="/Users/distiller/.rubies/${RUBY_NAME}"
             if [ ! -d "${RUBY_DIRECTORY}" ]; then 
@@ -43,9 +43,9 @@ jobs:
                 echo "${RUBY_NAME} is already installed"
             fi
       - save_cache:
-          key: v1_ruby-2.6.5_{{ .Branch }}
+          key: v1_ruby-2.7.0_{{ .Branch }}
           paths:
-            - /Users/distiller/.rubies/ruby-2.6.5
+            - /Users/distiller/.rubies/ruby-2.7.0
 
       ## Checkout source
       - checkout
@@ -63,12 +63,12 @@ jobs:
       ## Install bundle (cache-wrapped)
       - restore_cache:
           keys:
-            - v2_bundle-cache_{{ .Branch }}_{{ checksum "Gemfile.lock" }}
-            - v2_bundle-cache_{{ .Branch }}
-            - v2_bundle-cache
+            - v3_bundle-cache_{{ .Branch }}_{{ checksum "Gemfile.lock" }}
+            - v3_bundle-cache_{{ .Branch }}
+            - v3_bundle-cache
       - run: bundle install
       - save_cache:
-          key: v2_bundle-cache_{{ .Branch }}_{{ checksum "Gemfile.lock" }}
+          key: v3_bundle-cache_{{ .Branch }}_{{ checksum "Gemfile.lock" }}
           paths:
             # This is basically GEM_HOME, hardcoded.
             # It MUST be updated if the ruby version changes!
@@ -77,7 +77,7 @@ jobs:
             # because these morons still haven't made it possible to interpolate
             # env vars throughout the config file. They even RECOMMEND hardcoding here:
             # https://discuss.circleci.com/t/can-i-use-variables-in-cache-paths/11393/3
-            - /Users/distiller/.gem/ruby/2.6.5
+            - /Users/distiller/.gem/ruby/2.7.0
 
       ## Install pods (cache-wrapped)
       - restore_cache:
