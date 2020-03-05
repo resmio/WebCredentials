@@ -4,7 +4,7 @@ version: 2
 jobs:
   build:
     macos:
-      xcode: "11.2.1"
+      xcode: "11.3.1"
     shell: /bin/bash --login -eo pipefail
     environment:
       LANG: en_US.UTF-8
@@ -29,8 +29,8 @@ jobs:
       ## Install ruby (cache-wrapped)
       - restore_cache:
           keys:
-            - v1_ruby-2.7.0_{{ .Branch }}
-            - v1_ruby-2.7.0
+            - v2_ruby-2.7.0_{{ .Branch }}
+            - v2_ruby-2.7.0
       - run:
           name: Install ruby
           command: |
@@ -43,7 +43,7 @@ jobs:
                 echo "${RUBY_NAME} is already installed"
             fi
       - save_cache:
-          key: v1_ruby-2.7.0_{{ .Branch }}
+          key: v2_ruby-2.7.0_{{ .Branch }}
           paths:
             - /Users/distiller/.rubies/ruby-2.7.0
 
@@ -63,12 +63,12 @@ jobs:
       ## Install bundle (cache-wrapped)
       - restore_cache:
           keys:
-            - v4_bundle-cache_{{ .Branch }}_{{ checksum "Gemfile.lock" }}
-            - v4_bundle-cache_{{ .Branch }}
-            - v4_bundle-cache
+            - v5_bundle-cache_{{ .Branch }}_{{ checksum "Gemfile.lock" }}
+            - v5_bundle-cache_{{ .Branch }}
+            - v5_bundle-cache
       - run: bundle install
       - save_cache:
-          key: v4_bundle-cache_{{ .Branch }}_{{ checksum "Gemfile.lock" }}
+          key: v5_bundle-cache_{{ .Branch }}_{{ checksum "Gemfile.lock" }}
           paths:
             # This is basically GEM_HOME, hardcoded.
             # It MUST be updated if the ruby version changes!
@@ -82,12 +82,12 @@ jobs:
       ## Install pods (cache-wrapped)
       - restore_cache:
           keys:
-            - v2_pod-cache_{{ .Branch }}_{{ checksum "Podfile.lock" }}
-            - v2_pod-cache_{{ .Branch }}
-            - v2_pod-cache
+            - v3_pod-cache_{{ .Branch }}_{{ checksum "Podfile.lock" }}
+            - v3_pod-cache_{{ .Branch }}
+            - v3_pod-cache
       - run: bundle exec pod install
       - save_cache:
-          key: v2_pod-cache_{{ .Branch }}_{{ checksum "Podfile.lock" }}
+          key: v3_pod-cache_{{ .Branch }}_{{ checksum "Podfile.lock" }}
           paths:
             - ./Pods
 
