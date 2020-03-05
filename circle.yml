@@ -4,7 +4,7 @@ version: 2
 jobs:
   build:
     macos:
-      xcode: "11.2.1"
+      xcode: "11.3.1"
     shell: /bin/bash --login -eo pipefail
     environment:
       LANG: en_US.UTF-8
