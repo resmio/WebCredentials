@@ -13,9 +13,6 @@
       </Group>
    </Group>
    <FileRef
-      location = "group:circle.yml">
-   </FileRef>
-   <FileRef
       location = "group:LICENSE">
    </FileRef>
    <FileRef
