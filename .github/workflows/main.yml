@@ -19,6 +19,7 @@ jobs:
       # the volume of caches increases over a certain value
       CACHE_VERSION: 1
       RVM_VERSION: 1.29.9
+      BUNDLER_VERSION: 2.1.4
 
     steps:
     - name: 'Pre-start iOS Simulator'
@@ -82,6 +83,7 @@ jobs:
         source $HOME/.rvm/scripts/rvm
         rvm --force gemset empty $RUBY_GEMSET
         rvm use $RUBY_VERSION@$RUBY_GEMSET
+        gem install bundler:$BUNDLER_VERSION
         bundle install
     
     - name: 'Fetch pod cache'
