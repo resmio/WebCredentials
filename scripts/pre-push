@@ -8,7 +8,7 @@ PROJECTNAME=$(head -n 1 .projectname)
 # # # # # # # # # # # # # # # # # # # # #
 
 
-STASH_MESSAGE="<post-merge-hook> Temporary stash, do not pop or delete"
+STASH_MESSAGE="<pre-push-hook> Temporary stash, do not pop or delete"
 
 function stash_all_changes
 {
