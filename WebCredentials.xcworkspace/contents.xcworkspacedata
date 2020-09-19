@@ -34,9 +34,6 @@
          location = "container:"
          name = "scripts">
          <FileRef
-            location = "group:scripts/post-merge">
-         </FileRef>
-         <FileRef
             location = "group:scripts/pre-push">
          </FileRef>
          <FileRef
