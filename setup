@@ -5,6 +5,7 @@ cd "${__dir}"
 
 
 RUBY_VERSION='2.6.6'
+BUNDLER_VERSION='2.1.4'
 COCOAPODS_VERSION='1.9.0'
 SYNX_VERSION='0.2.1'
 XCPRETTY_VERSION='0.3.0'
@@ -1029,15 +1030,13 @@ echo "# # #"
 # # # # # # # # #
 # Install bundler
 echo "Checking for bundler installation..."
-GEM_SPEC_BUNDLER_OUTPUT=$( (gem spec bundler) 2>&1 )
-GEM_NOT_FOUND=${GEM_SPEC_BUNDLER_OUTPUT::5}
-if [[ $GEM_NOT_FOUND = "ERROR" ]];
+if $(gem list bundler -i --version "${BUNDLER_VERSION}")
 then
-    echo "bundler is not installed."
-    echo "Installing bundler..."
-    gem install bundler
+    echo "bundler:${BUNDLER_VERSION} is already installed."
 else
-    echo "bundler is already installed."
+     echo "bundler is not installed."
+     echo "Installing bundler..."
+     gem install "bundler:${BUNDLER_VERSION}"
 fi
 #
 # # # # # # # # #
