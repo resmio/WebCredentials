@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: macos-10.15
     env:
-      DEVELOPER_DIR: /Applications/Xcode_12.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_12.4.app/Contents/Developer
       # To create a fresh cache if none of the cache parameters has changed,
       # simply bump the CACHE_VERSION variable. This is mainly needed when
       # changes to the caching steps have been made, but might be useful for
@@ -29,20 +29,20 @@ jobs:
       run: |
         _BUILD_OUTPUT_DIR=$HOME/build_output
         mkdir $_BUILD_OUTPUT_DIR
-        echo "::set-env name=BUILD_OUTPUT_DIR::$_BUILD_OUTPUT_DIR"
+        echo "BUILD_OUTPUT_DIR=$_BUILD_OUTPUT_DIR" >> $GITHUB_ENV
         
         _XCODEBUILD_LOG_DIR=$_BUILD_OUTPUT_DIR/xcodebuild_logs
         mkdir $_XCODEBUILD_LOG_DIR
-        echo "::set-env name=XCODEBUILD_LOG_DIR::$_XCODEBUILD_LOG_DIR"
+        echo "XCODEBUILD_LOG_DIR=$_XCODEBUILD_LOG_DIR" >> $GITHUB_ENV
     
     - name: 'Checkout code'
       uses: actions/checkout@v2
     
     - name: 'Set RUBY_VERSION'
-      run: echo "::set-env name=RUBY_VERSION::$(cat .ruby-version)"
+      run: echo "RUBY_VERSION=$(cat .ruby-version)" >> $GITHUB_ENV
       
     - name: 'Set RUBY_GEMSET'
-      run: echo "::set-env name=RUBY_GEMSET::$(cat .ruby-gemset)"
+      run: echo "RUBY_GEMSET=$(cat .ruby-gemset)" >> $GITHUB_ENV
     
     - name: 'Fetch rvm cache'
       id: rvm-cache
@@ -77,18 +77,6 @@ jobs:
         path: ~/.rvm/gems/ruby-${{ env.RUBY_VERSION }}@${{ env.RUBY_GEMSET }}
         key: cache-${{ env.CACHE_VERSION }}_bundle-${{ hashFiles('Gemfile.lock') }}
 
-    - name: 'Install coreutils'
-      if: steps.bundle-cache.outputs.cache-hit != 'true'
-      run: |
-        # This step currently (April 10, 2020) seems to be necessary
-        # so bundle install doesn't error out when trying to build the
-        # native extensions for ffi, which is installed as a secondary
-        # dependency for one of the gems in the Gemfile (I think cocoapods,
-        # but haven't checked that yet.) It used to fail because it couldn't
-        # find gmkdir, which is contained in coreutils. This step is not
-        # cached yet but takes only ... seconds to install.
-        brew install coreutils
-
     - name: 'Install bundle'
       if: steps.bundle-cache.outputs.cache-hit != 'true'
       run: |
@@ -109,7 +97,7 @@ jobs:
       if: steps.pod-cache.outputs.cache-hit != 'true'
       run: |
         source $HOME/.rvm/scripts/rvm
-        rvm use .
+        rvm use $RUBY_VERSION@$RUBY_GEMSET
         pod install
 
     - name: 'Clean / Build / Test'
