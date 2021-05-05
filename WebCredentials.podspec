@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
     "Jan Nash" => "jan@resmio.com" 
   }
   s.platform = :ios, "10.0"
-  s.swift_version = '5.2'
+  s.swift_version = '5.3'
   s.source = {
     :git => "https://github.com/resmio/WebCredentials.git",
     :tag => "v#{s.version}"
