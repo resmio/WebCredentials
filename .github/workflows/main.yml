@@ -21,9 +21,6 @@ jobs:
       BUNDLER_VERSION: 2.2.16
 
     steps:
-    - name: 'Pre-start iOS Simulator'
-      run: xcrun simctl boot "iPad Air (3rd generation)"
-    
     - name: Create output directories
       run: |
         _BUILD_OUTPUT_DIR=$HOME/build_output
