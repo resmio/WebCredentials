@@ -53,7 +53,7 @@ jobs:
     - name: 'Install pods'
       if: steps.pod-cache.outputs.cache-hit != 'true'
       run: |
-        pod install
+        bundle exec pod install
 
     - name: 'Clean / Build / Test'
       run: |
