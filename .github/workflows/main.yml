@@ -61,7 +61,7 @@ jobs:
           -workspace WebCredentials.xcworkspace \
           -scheme "WebCredentials" \
           -destination 'platform=iOS Simulator,name=iPad Air (3rd generation),OS=latest' \
-          clean build test \
+          clean build \
           | tee "$XCODEBUILD_LOG_DIR/xcodebuild-verbose.log" \
           | xcpretty \
           | tee "$XCODEBUILD_LOG_DIR/xcodebuild-xcpretty.log"
