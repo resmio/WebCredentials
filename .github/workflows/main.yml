@@ -53,8 +53,6 @@ jobs:
     - name: 'Install pods'
       if: steps.pod-cache.outputs.cache-hit != 'true'
       run: |
-        source $HOME/.rvm/scripts/rvm
-        rvm use $RUBY_VERSION@$RUBY_GEMSET
         pod install
 
     - name: 'Clean / Build / Test'
