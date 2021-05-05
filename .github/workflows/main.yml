@@ -18,13 +18,9 @@ jobs:
       # other debugging purposes as well. Github deletes the oldest unused
       # the volume of caches increases over a certain value
       CACHE_VERSION: 1
-      RVM_VERSION: 1.29.9
-      BUNDLER_VERSION: 2.1.4
+      BUNDLER_VERSION: 2.2.16
 
     steps:
-    - name: 'Pre-start iOS Simulator'
-      run: xcrun simctl boot "iPad Air (3rd generation)"
-    
     - name: Create output directories
       run: |
         _BUILD_OUTPUT_DIR=$HOME/build_output
@@ -38,53 +34,11 @@ jobs:
     - name: 'Checkout code'
       uses: actions/checkout@v2
     
-    - name: 'Set RUBY_VERSION'
-      run: echo "RUBY_VERSION=$(cat .ruby-version)" >> $GITHUB_ENV
-      
-    - name: 'Set RUBY_GEMSET'
-      run: echo "RUBY_GEMSET=$(cat .ruby-gemset)" >> $GITHUB_ENV
-    
-    - name: 'Fetch rvm cache'
-      id: rvm-cache
-      uses: actions/cache@v1
+    - name: 'Setup ruby'
+      uses: ruby/setup-ruby@v1
       with:
-        # This caches the complete rvm folder, including ruby and gems,
-        # so no extra cache step for ruby is necessary.
-        # It includes the rvm version and the ruby version.
-        #
-        # The gems are cached in a specific cache as well, so, if Gemfile.lock
-        # has changed, the gemset will be removed and installed from scratch
-        # without having to reinstall rvm or ruby.
-        # Thus, the hash of Gemfile.lock is not included in the key for
-        # this cache
-        path: ~/.rvm/
-        key: cache-${{ env.CACHE_VERSION }}_rvm-${{ env.RVM_VERSION }}_ruby-${{ env.RUBY_VERSION }}
-    
-    - name: 'Install rvm'
-      if: steps.rvm-cache.outputs.cache-hit != 'true'
-      run: 'curl -sSL https://get.rvm.io | bash'
-        
-    - name: 'Install ruby'
-      if: steps.rvm-cache.outputs.cache-hit != 'true'
-      run: |
-        source $HOME/.rvm/scripts/rvm
-        rvm install $(cat .ruby-version)
-
-    - name: 'Fetch bundle cache'
-      id: bundle-cache
-      uses: actions/cache@v1
-      with:
-        path: ~/.rvm/gems/ruby-${{ env.RUBY_VERSION }}@${{ env.RUBY_GEMSET }}
-        key: cache-${{ env.CACHE_VERSION }}_bundle-${{ hashFiles('Gemfile.lock') }}
-
-    - name: 'Install bundle'
-      if: steps.bundle-cache.outputs.cache-hit != 'true'
-      run: |
-        source $HOME/.rvm/scripts/rvm
-        rvm --force gemset empty $RUBY_GEMSET
-        rvm use $RUBY_VERSION@$RUBY_GEMSET
-        gem install bundler:$BUNDLER_VERSION
-        bundle install
+        bundler: ${{ env.BUNDLER_VERSION }}
+        bundler-cache: true
     
     - name: 'Fetch pod cache'
       id: pod-cache
@@ -96,9 +50,7 @@ jobs:
     - name: 'Install pods'
       if: steps.pod-cache.outputs.cache-hit != 'true'
       run: |
-        source $HOME/.rvm/scripts/rvm
-        rvm use $RUBY_VERSION@$RUBY_GEMSET
-        pod install
+        bundle exec pod install
 
     - name: 'Clean / Build / Test'
       run: |
@@ -106,9 +58,9 @@ jobs:
           -workspace WebCredentials.xcworkspace \
           -scheme "WebCredentials" \
           -destination 'platform=iOS Simulator,name=iPad Air (3rd generation),OS=latest' \
-          clean build test \
+          clean build \
           | tee "$XCODEBUILD_LOG_DIR/xcodebuild-verbose.log" \
-          | xcpretty \
+          | bundle exec xcpretty \
           | tee "$XCODEBUILD_LOG_DIR/xcodebuild-xcpretty.log"
 
     - name: 'Upload xcodebuild logs'
