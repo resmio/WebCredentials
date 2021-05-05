@@ -63,7 +63,7 @@ jobs:
           -destination 'platform=iOS Simulator,name=iPad Air (3rd generation),OS=latest' \
           clean build \
           | tee "$XCODEBUILD_LOG_DIR/xcodebuild-verbose.log" \
-          | xcpretty \
+          | bundle exec xcpretty \
           | tee "$XCODEBUILD_LOG_DIR/xcodebuild-xcpretty.log"
 
     - name: 'Upload xcodebuild logs'
