@@ -19,7 +19,7 @@ jobs:
       # the volume of caches increases over a certain value
       CACHE_VERSION: 1
       RVM_VERSION: 1.29.9
-      BUNDLER_VERSION: 2.1.4
+      BUNDLER_VERSION: 2.2.16
 
     steps:
     - name: 'Pre-start iOS Simulator'
