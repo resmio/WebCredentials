@@ -37,9 +37,10 @@ jobs:
     - name: 'Checkout code'
       uses: actions/checkout@v2
     
-    - name: 'Select ruby'
+    - name: 'Setup ruby'
       uses: ruby/setup-ruby@v1
       with:
+        bundler: ${{ env.BUNDLER_VERSION }}
         bundler-cache: true
     
     - name: 'Fetch pod cache'
