@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "WebCredentials"
-  s.version = "1.2.5"
+  s.version = "1.2.6"
   s.summary = "A Swift 5 wrapper for Security.SecSharedWebCredentials"
   s.description = <<-DESC
                   This is a micro-framework which aims to make accessing the
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
     "Jan Nash" => "jan@resmio.com" 
   }
   s.platform = :ios, "10.0"
-  s.swift_version = '5.3'
+  s.swift_version = '5.5'
   s.source = {
     :git => "https://github.com/resmio/WebCredentials.git",
     :tag => "v#{s.version}"
