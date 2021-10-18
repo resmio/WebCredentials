@@ -119,7 +119,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = "Jan Nash (resmio)";
 				TargetAttributes = {
 					8E0F76FE6AAF788F9250E09A62D1EDDF = {
