@@ -1,6 +1,6 @@
 source 'https://cdn.cocoapods.org/'
 
-platform :ios, '10.0'
+platform :ios, '12.0'
 
 target 'WebCredentials' do
   use_frameworks!
