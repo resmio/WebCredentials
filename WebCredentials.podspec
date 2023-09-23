@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "WebCredentials"
-  s.version = "1.2.8"
+  s.version = "1.2.9"
   s.summary = "A Swift 5 wrapper for Security.SecSharedWebCredentials"
   s.description = <<-DESC
                   This is a micro-framework which aims to make accessing the
