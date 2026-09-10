@@ -9,16 +9,16 @@ on:
 
 jobs:
   build:
-    runs-on: macos-12
+    runs-on: macos-26
     env:
-      DEVELOPER_DIR: /Applications/Xcode_14.2.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
       # To create a fresh cache if none of the cache parameters has changed,
       # simply bump the CACHE_VERSION variable. This is mainly needed when
       # changes to the caching steps have been made, but might be useful for
       # other debugging purposes as well. Github deletes the oldest unused
       # the volume of caches increases over a certain value
       CACHE_VERSION: 1
-      BUNDLER_VERSION: 2.4.19
+      BUNDLER_VERSION: 4.0.17
 
     steps:
     - name: Create output directories
@@ -42,7 +42,7 @@ jobs:
     
     - name: 'Fetch pod cache'
       id: pod-cache
-      uses: actions/cache@v1
+      uses: actions/cache@v4
       with:
         path: ./Pods
         key: cache-${{ env.CACHE_VERSION }}_bundle-${{ hashFiles('Podfile.lock') }}
@@ -64,7 +64,7 @@ jobs:
           | tee "$XCODEBUILD_LOG_DIR/xcodebuild-xcpretty.log"
 
     - name: 'Upload xcodebuild logs'
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@master
       with:
         name: xcodebuild-logs
         path: ${{ env.XCODEBUILD_LOG_DIR }}
